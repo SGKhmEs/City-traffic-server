@@ -1,9 +1,11 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
+import { CityTrafficServerCabPositionModule } from './cab-position/cab-position.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
     imports: [
+        CityTrafficServerCabPositionModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

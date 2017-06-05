@@ -1,0 +1,66 @@
+<div>
+    <h2>
+        <span>Cab Positions</span>
+        <button class="btn btn-primary float-right create-cab-position" [routerLink]="['/', { outlets: { popup: ['cab-position-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Cab Position
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="cabPositions">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Qr</span></th>
+            <th><span>Time</span></th>
+            <th><span>Latitude</span></th>
+            <th><span>Longitude</span></th>
+            <th><span>Accuracy</span></th>
+            <th><span>Speed</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let cabPosition of cabPositions ;trackBy: trackId">
+                <td><a [routerLink]="['../cab-position', cabPosition.id ]">{{cabPosition.id}}</a></td>
+                <td>{{cabPosition.qr}}</td>
+                <td>{{cabPosition.time}}</td>
+                <td>{{cabPosition.latitude}}</td>
+                <td>{{cabPosition.longitude}}</td>
+                <td>{{cabPosition.accuracy}}</td>
+                <td>{{cabPosition.speed}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../cab-position', cabPosition.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'cab-position/'+ cabPosition.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'cab-position/'+ cabPosition.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

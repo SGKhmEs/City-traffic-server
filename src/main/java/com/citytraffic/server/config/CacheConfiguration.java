@@ -42,6 +42,7 @@ public class CacheConfiguration {
             cm.createCache(com.citytraffic.server.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(com.citytraffic.server.domain.PersistentToken.class.getName(), jcacheConfiguration);
             cm.createCache(com.citytraffic.server.domain.User.class.getName() + ".persistentTokens", jcacheConfiguration);
+            cm.createCache(com.citytraffic.server.domain.CabPosition.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

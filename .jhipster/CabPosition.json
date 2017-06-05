@@ -1,0 +1,35 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "qr",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "time",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "latitude",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "longitude",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "accuracy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "speed",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170605233546",
+    "entityTableName": "cab_position",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}
