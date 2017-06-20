@@ -42,7 +42,6 @@ export class NavbarComponent implements OnInit {
         });
     }
 
-
     collapseNavbar() {
         this.isNavbarCollapsed = true;
     }
