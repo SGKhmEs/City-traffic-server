@@ -10,16 +10,19 @@ import { CityTrafficServerAdminModule } from './admin/admin.module';
 import { CityTrafficServerAccountModule } from './account/account.module';
 import { CityTrafficServerEntityModule } from './entities/entity.module';
 
-import { LayoutRoutingModule } from './layouts';
 import { customHttpProvider } from './blocks/interceptor/http.provider';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
 
+// jhipster-needle-angular-add-module-import JHipster will add new module here
+
 import {
     JhiMainComponent,
+    LayoutRoutingModule,
     NavbarComponent,
     FooterComponent,
     ProfileService,
     PageRibbonComponent,
+    ActiveMenuDirective,
     ErrorComponent
 } from './layouts';
 
@@ -32,13 +35,15 @@ import {
         CityTrafficServerHomeModule,
         CityTrafficServerAdminModule,
         CityTrafficServerAccountModule,
-        CityTrafficServerEntityModule
+        CityTrafficServerEntityModule,
+        // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
         JhiMainComponent,
         NavbarComponent,
         ErrorComponent,
         PageRibbonComponent,
+        ActiveMenuDirective,
         FooterComponent
     ],
     providers: [

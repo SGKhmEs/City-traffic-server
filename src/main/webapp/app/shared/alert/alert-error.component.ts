@@ -1,5 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { TranslateService } from '@ngx-translate/core';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Subscription } from 'rxjs/Rx';
 
 @Component({
@@ -7,7 +8,9 @@ import { Subscription } from 'rxjs/Rx';
     template: `
         <div class="alerts" role="alert">
             <div *ngFor="let alert of alerts"  [ngClass]="{\'alert.position\': true, \'toast\': alert.toast}">
-                <ngb-alert type="{{alert.type}}" close="alert.close(alerts)"><pre [innerHTML]="alert.msg"></pre></ngb-alert>
+                <ngb-alert *ngIf="alert && alert.type && alert.msg" [type]="alert.type" (close)="alert.close(alerts)">
+                    <pre [innerHTML]="alert.msg"></pre>
+                </ngb-alert>
             </div>
         </div>`
 })
@@ -16,7 +19,7 @@ export class JhiAlertErrorComponent implements OnDestroy {
     alerts: any[];
     cleanHttpErrorListener: Subscription;
 
-    constructor(private alertService: AlertService, private eventManager: EventManager) {
+    constructor(private alertService: JhiAlertService, private eventManager: JhiEventManager, private translateService: TranslateService) {
         this.alerts = [];
 
         this.cleanHttpErrorListener = eventManager.subscribe('cityTrafficServerApp.httpError', (response) => {
@@ -44,7 +47,7 @@ export class JhiAlertErrorComponent implements OnDestroy {
                         entityKey = httpResponse.headers.get(headers[1]);
                     }
                     if (errorHeader) {
-                        const entityName = entityKey;
+                        const entityName = translateService.instant('global.menu.entities.' + entityKey);
                         this.addErrorAlert(errorHeader, errorHeader, { entityName });
                     } else if (httpResponse.text() !== '' && httpResponse.json() && httpResponse.json().fieldErrors) {
                         const fieldErrors = httpResponse.json().fieldErrors;
@@ -52,10 +55,10 @@ export class JhiAlertErrorComponent implements OnDestroy {
                             const fieldError = fieldErrors[i];
                             // convert 'something[14].other[4].id' to 'something[].other[].id' so translations can be written to it
                             const convertedField = fieldError.field.replace(/\[\d*\]/g, '[]');
-                            const fieldName = convertedField.charAt(0).toUpperCase() +
-                                convertedField.slice(1);
+                            const fieldName = translateService.instant('cityTrafficServerApp.' +
+                                fieldError.objectName + '.' + convertedField);
                             this.addErrorAlert(
-                                'Field ' + fieldName + ' cannot be empty', 'error.' + fieldError.message, { fieldName });
+                                'Error on field "' + fieldName + '"', 'error.' + fieldError.message, { fieldName });
                         }
                     } else if (httpResponse.text() !== '' && httpResponse.json() && httpResponse.json().message) {
                         this.addErrorAlert(httpResponse.json().message, httpResponse.json().message, httpResponse.json().params);
@@ -72,7 +75,7 @@ export class JhiAlertErrorComponent implements OnDestroy {
                     if (httpResponse.text() !== '' && httpResponse.json() && httpResponse.json().message) {
                         this.addErrorAlert(httpResponse.json().message);
                     } else {
-                        this.addErrorAlert(JSON.stringify(httpResponse)); // Fixme find a way to parse httpResponse
+                        this.addErrorAlert(httpResponse.text());
                     }
             }
         });
@@ -86,11 +89,13 @@ export class JhiAlertErrorComponent implements OnDestroy {
     }
 
     addErrorAlert(message, key?, data?) {
+        key = (key && key !== null) ? key : message;
         this.alerts.push(
             this.alertService.addAlert(
                 {
                     type: 'danger',
-                    msg: message,
+                    msg: key,
+                    params: data,
                     timeout: 5000,
                     toast: this.alertService.isToast(),
                     scoped: true

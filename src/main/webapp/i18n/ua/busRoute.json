@@ -1,0 +1,22 @@
+{
+    "cityTrafficServerApp": {
+        "busRoute" : {
+            "home": {
+                "title": "Bus Routes",
+                "createLabel": "Створити новий Bus Route",
+                "createOrEditLabel": "Створити чи редагувати Bus Route"
+            },
+            "created": "Новий Bus Route створений з ідентифікатором {{ param }}",
+            "updated": "Bus Route оновлений з ідентифікатором {{ param }}",
+            "deleted": "Bus Route видалений з ідентифікатором {{ param }}",
+            "delete": {
+                "question": "Ви впевнені, що хочете видалити Bus Route {{ id }}?"
+            },
+            "detail": {
+                "title": "Bus Route"
+            },
+            "name": "Name",
+            "carOnRoute": "Car On Route"
+        }
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "carOnRoute",
+            "otherEntityName": "carOnRoute",
+            "otherEntityRelationshipName": "car"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "gps",
+            "otherEntityName": "gPS",
+            "otherEntityRelationshipName": "car"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "qr",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170621192106",
+    "javadoc": "The Car entity",
+    "entityTableName": "car",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

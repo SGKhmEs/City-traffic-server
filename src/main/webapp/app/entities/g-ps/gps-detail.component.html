@@ -1,0 +1,47 @@
+
+<div *ngIf="gPS">
+    <h2><span jhiTranslate="cityTrafficServerApp.gPS.detail.title">GPS</span> {{gPS.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="cityTrafficServerApp.gPS.time">Time</span></dt>
+        <dd>
+            <span>{{gPS.time | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="cityTrafficServerApp.gPS.latitude">Latitude</span></dt>
+        <dd>
+            <span>{{gPS.latitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="cityTrafficServerApp.gPS.longitude">Longitude</span></dt>
+        <dd>
+            <span>{{gPS.longitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="cityTrafficServerApp.gPS.accurancy">Accurancy</span></dt>
+        <dd>
+            <span>{{gPS.accurancy}}</span>
+        </dd>
+        <dt><span jhiTranslate="cityTrafficServerApp.gPS.speed">Speed</span></dt>
+        <dd>
+            <span>{{gPS.speed}}</span>
+        </dd>
+        <dt><span jhiTranslate="cityTrafficServerApp.gPS.car">Car</span></dt>
+        <dd>
+            <div *ngIf="gPS.carId">
+                <a [routerLink]="['/car', gPS.carId]">{{gPS.carId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'gps/'+ gPS.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

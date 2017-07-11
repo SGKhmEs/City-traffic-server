@@ -1,0 +1,26 @@
+{
+    "cityTrafficServerApp": {
+        "gPS" : {
+            "home": {
+                "title": "GPS",
+                "createLabel": "Створити новий GPS",
+                "createOrEditLabel": "Створити чи редагувати GPS"
+            },
+            "created": "Новий GPS створений з ідентифікатором {{ param }}",
+            "updated": "GPS оновлений з ідентифікатором {{ param }}",
+            "deleted": "GPS видалений з ідентифікатором {{ param }}",
+            "delete": {
+                "question": "Ви впевнені, що хочете видалити GPS {{ id }}?"
+            },
+            "detail": {
+                "title": "GPS"
+            },
+            "time": "Time",
+            "latitude": "Latitude",
+            "longitude": "Longitude",
+            "accurancy": "Accurancy",
+            "speed": "Speed",
+            "car": "Car"
+        }
+    }
+}

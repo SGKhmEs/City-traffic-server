@@ -1,14 +1,15 @@
 {
   "generator-jhipster": {
     "promptValues": {
-      "packageName": "com.citytraffic.server"
+      "packageName": "com.citytraffic.server",
+      "nativeLanguage": "ua"
     },
-    "jhipsterVersion": "4.3.0",
+    "jhipsterVersion": "4.5.5",
     "baseName": "cityTrafficServer",
     "packageName": "com.citytraffic.server",
     "packageFolder": "com/citytraffic/server",
     "serverPort": "8080",
-    "authenticationType": "session",
+    "authenticationType": "jwt",
     "hibernateCache": "ehcache",
     "clusteredHttpSession": false,
     "websocket": false,
@@ -17,19 +18,24 @@
     "prodDatabaseType": "postgresql",
     "searchEngine": false,
     "messageBroker": false,
-    "serviceDiscoveryType": false,
+    "serviceDiscoveryType": "eureka",
     "buildTool": "gradle",
     "enableSocialSignIn": false,
-    "rememberMeKey": "553bf5b318259f30921ddb5b6b18586655f1b3f8",
+    "jwtSecretKey": "9f157468612fc77b8604af35a8481fa26e622b78",
     "clientFramework": "angular2",
-    "useSass": false,
+    "useSass": true,
     "clientPackageManager": "yarn",
     "applicationType": "monolith",
     "testFrameworks": [
-      "gatling",
-      "protractor"
+      "gatling"
     ],
     "jhiPrefix": "jhi",
-    "enableTranslation": false
+    "enableTranslation": true,
+    "nativeLanguage": "ua",
+    "languages": [
+      "ua",
+      "en",
+      "ru"
+    ]
   }
 }

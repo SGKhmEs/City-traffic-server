@@ -1,0 +1,23 @@
+{
+    "cityTrafficServerApp": {
+        "car" : {
+            "home": {
+                "title": "Cars",
+                "createLabel": "Создать новый Car",
+                "createOrEditLabel": "Создать или отредактировать Car"
+            },
+            "created": "Новый Car создан с идентификатором {{ param }}",
+            "updated": "Car обновлен с идентификатором {{ param }}",
+            "deleted": "Car удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Car {{ id }}?"
+            },
+            "detail": {
+                "title": "Car"
+            },
+            "qr": "Qr",
+            "carOnRoute": "Car On Route",
+            "gps": "Gps"
+        }
+    }
+}

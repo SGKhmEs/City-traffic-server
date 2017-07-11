@@ -1,27 +1,7 @@
 # cityTrafficServer
-Server app for City Traffic project.
-## Read THIS before start any Development on your side!
+This application was generated using JHipster 4.5.5, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v4.5.5](https://jhipster.github.io/documentation-archive/v4.5.5).
 
-`We are using:`
-* IntelliJ IDEA 2017.1.2 Build #IU-171.4249.39 *
-* PostgreSQL ver. 9.6 database *
-
-`Dev database connection settings`  must be the same as src\main\resources\config\application-dev.yml file or change application-dev.yml file for yours.
-
-Current setting are         
-* url: jdbc:postgresql://localhost:5432/cityTrafficServer
-* username: postgres
-* password: root
-
-If you don't want to start app server from console by command:
-
-    ./gradlew
-
-, try to configure your IDEA by using this tutorials:
-1) https://jhipster.github.io/configuring-ide-idea/
-2) https://www.youtube.com/watch?v=zAtcXRRuMi8
-
-#Other settings by jhipster
+## Development
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
 
@@ -117,8 +97,7 @@ Unit tests are run by [Karma][] and written with [Jasmine][]. They're located in
 
     yarn test
 
-UI end-to-end tests are powered by [Protractor][], which is built on top of WebDriverJS. They're located in [src/test/javascript/e2e](src/test/javascript/e2e)
-and can be run by starting Spring Boot in one terminal (`./gradlew bootRun`) and running the tests (`yarn run e2e`) in a second one.
+
 ### Other tests
 
 Performance tests are run by [Gatling][] and written in Scala. They're located in [src/test/gatling](src/test/gatling) and can be run with:
@@ -147,20 +126,21 @@ Then run:
 
     docker-compose -f src/main/docker/app.yml up -d
 
-For more information refer to [Using Docker and Docker-Compose][], this page also contains information on the docker-compose sub-generator (`yo jhipster:docker-compose`), which is able to generate docker configurations for one or several JHipster applications.
+For more information refer to [Using Docker and Docker-Compose][], this page also contains information on the docker-compose sub-generator (`jhipster docker-compose`), which is able to generate docker configurations for one or several JHipster applications.
 
 ## Continuous Integration (optional)
 
-To configure CI for your project, run the ci-cd sub-generator (`yo jhipster:ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
+To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
 
 [JHipster Homepage and latest documentation]: https://jhipster.github.io
-[JHipster 4.3.0 archive]: https://jhipster.github.io/documentation-archive/v4.3.0
+[JHipster 4.5.5 archive]: https://jhipster.github.io/documentation-archive/v4.5.5
 
-[Using JHipster in development]: https://jhipster.github.io/documentation-archive/v4.3.0/development/
-[Using Docker and Docker-Compose]: https://jhipster.github.io/documentation-archive/v4.3.0/docker-compose
-[Using JHipster in production]: https://jhipster.github.io/documentation-archive/v4.3.0/production/
-[Running tests page]: https://jhipster.github.io/documentation-archive/v4.3.0/running-tests/
-[Setting up Continuous Integration]: https://jhipster.github.io/documentation-archive/v4.3.0/setting-up-ci/
+[Using JHipster in development]: https://jhipster.github.io/documentation-archive/v4.5.5/development/
+[Service Discovery and Configuration with the JHipster-Registry]: https://jhipster.github.io/documentation-archive/v4.5.5/microservices-architecture/#jhipster-registry
+[Using Docker and Docker-Compose]: https://jhipster.github.io/documentation-archive/v4.5.5/docker-compose
+[Using JHipster in production]: https://jhipster.github.io/documentation-archive/v4.5.5/production/
+[Running tests page]: https://jhipster.github.io/documentation-archive/v4.5.5/running-tests/
+[Setting up Continuous Integration]: https://jhipster.github.io/documentation-archive/v4.5.5/setting-up-ci/
 
 [Gatling]: http://gatling.io/
 [Node.js]: https://nodejs.org/

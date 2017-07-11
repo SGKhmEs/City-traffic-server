@@ -1,0 +1,70 @@
+<div>
+    <h2>
+        <span jhiTranslate="cityTrafficServerApp.gPS.home.title">GPS</span>
+        <button class="btn btn-primary float-right create-gps" [routerLink]="['/', { outlets: { popup: ['gps-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="cityTrafficServerApp.gPS.home.createLabel">
+            Create new GPS
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="gPS">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="cityTrafficServerApp.gPS.time">Time</span></th>
+            <th><span jhiTranslate="cityTrafficServerApp.gPS.latitude">Latitude</span></th>
+            <th><span jhiTranslate="cityTrafficServerApp.gPS.longitude">Longitude</span></th>
+            <th><span jhiTranslate="cityTrafficServerApp.gPS.accurancy">Accurancy</span></th>
+            <th><span jhiTranslate="cityTrafficServerApp.gPS.speed">Speed</span></th>
+            <th><span jhiTranslate="cityTrafficServerApp.gPS.car">Car</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let gPS of gPS ;trackBy: trackId">
+                <td><a [routerLink]="['../gps', gPS.id ]">{{gPS.id}}</a></td>
+                <td>{{gPS.time | date:'mediumDate'}}</td>
+                <td>{{gPS.latitude}}</td>
+                <td>{{gPS.longitude}}</td>
+                <td>{{gPS.accurancy}}</td>
+                <td>{{gPS.speed}}</td>
+                <td>
+                    <div *ngIf="gPS.carId">
+                        <a [routerLink]="['../car', gPS.carId  ]" >{{gPS.carId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../gps', gPS.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'gps/'+ gPS.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'gps/'+ gPS.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

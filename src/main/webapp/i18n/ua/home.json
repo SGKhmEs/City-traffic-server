@@ -1,0 +1,19 @@
+{
+    "home": {
+        "title": "Ласкаво просимо на CityTrafficServer",
+        "subtitle": "Ви перебуваєте на сервері зберігання інформації системи моніторингу руху громадського транспорту",
+        "logged": {
+            "message": "Ви ввійшли як користувач \"{{username}}\"."
+        },
+        "question": "",
+        "link": {
+            "homepage": "",
+            "stackoverflow": "",
+            "bugtracker": "",
+            "chat": "",
+            "follow": ""
+        },
+        "like": "Сторінка проекту на",
+        "github": "GitHub"
+    }
+}

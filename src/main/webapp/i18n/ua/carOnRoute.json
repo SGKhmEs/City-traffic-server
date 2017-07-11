@@ -1,0 +1,24 @@
+{
+    "cityTrafficServerApp": {
+        "carOnRoute" : {
+            "home": {
+                "title": "Car On Routes",
+                "createLabel": "Створити новий Car On Route",
+                "createOrEditLabel": "Створити чи редагувати Car On Route"
+            },
+            "created": "Новий Car On Route створений з ідентифікатором {{ param }}",
+            "updated": "Car On Route оновлений з ідентифікатором {{ param }}",
+            "deleted": "Car On Route видалений з ідентифікатором {{ param }}",
+            "delete": {
+                "question": "Ви впевнені, що хочете видалити Car On Route {{ id }}?"
+            },
+            "detail": {
+                "title": "Car On Route"
+            },
+            "timeLogin": "Time Login",
+            "timeLogout": "Time Logout",
+            "car": "Car",
+            "route": "Route"
+        }
+    }
+}

@@ -3,7 +3,6 @@ package com.citytraffic.server.service;
 import com.citytraffic.server.domain.Authority;
 import com.citytraffic.server.domain.User;
 import com.citytraffic.server.repository.AuthorityRepository;
-import com.citytraffic.server.repository.PersistentTokenRepository;
 import com.citytraffic.server.config.Constants;
 import com.citytraffic.server.repository.UserRepository;
 import com.citytraffic.server.security.AuthoritiesConstants;
@@ -20,9 +19,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.time.ZonedDateTime;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Service class for managing users.
@@ -37,14 +37,11 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final PersistentTokenRepository persistentTokenRepository;
-
     private final AuthorityRepository authorityRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, PersistentTokenRepository persistentTokenRepository, AuthorityRepository authorityRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-        this.persistentTokenRepository = persistentTokenRepository;
         this.authorityRepository = authorityRepository;
     }
 
@@ -64,10 +61,7 @@ public class UserService {
        log.debug("Reset user password for reset key {}", key);
 
        return userRepository.findOneByResetKey(key)
-            .filter(user -> {
-                ZonedDateTime oneDayAgo = ZonedDateTime.now().minusHours(24);
-                return user.getResetDate().isAfter(oneDayAgo);
-           })
+           .filter(user -> user.getResetDate().isAfter(Instant.now().minusSeconds(86400)))
            .map(user -> {
                 user.setPassword(passwordEncoder.encode(newPassword));
                 user.setResetKey(null);
@@ -81,7 +75,7 @@ public class UserService {
             .filter(User::getActivated)
             .map(user -> {
                 user.setResetKey(RandomUtil.generateResetKey());
-                user.setResetDate(ZonedDateTime.now());
+                user.setResetDate(Instant.now());
                 return user;
             });
     }
@@ -120,7 +114,7 @@ public class UserService {
         user.setEmail(userDTO.getEmail());
         user.setImageUrl(userDTO.getImageUrl());
         if (userDTO.getLangKey() == null) {
-            user.setLangKey("en"); // default language
+            user.setLangKey("ua"); // default language
         } else {
             user.setLangKey(userDTO.getLangKey());
         }
@@ -134,7 +128,7 @@ public class UserService {
         String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
         user.setPassword(encryptedPassword);
         user.setResetKey(RandomUtil.generateResetKey());
-        user.setResetDate(ZonedDateTime.now());
+        user.setResetDate(Instant.now());
         user.setActivated(true);
         userRepository.save(user);
         log.debug("Created Information for User: {}", user);
@@ -224,23 +218,6 @@ public class UserService {
         return userRepository.findOneWithAuthoritiesByLogin(SecurityUtils.getCurrentUserLogin()).orElse(null);
     }
 
-    /**
-     * Persistent Token are used for providing automatic authentication, they should be automatically deleted after
-     * 30 days.
-     * <p>
-     * This is scheduled to get fired everyday, at midnight.
-     * </p>
-     */
-    @Scheduled(cron = "0 0 0 * * ?")
-    public void removeOldPersistentTokens() {
-        LocalDate now = LocalDate.now();
-        persistentTokenRepository.findByTokenDateBefore(now.minusMonths(1)).forEach(token -> {
-            log.debug("Deleting token {}", token.getSeries());
-            User user = token.getUser();
-            user.getPersistentTokens().remove(token);
-            persistentTokenRepository.delete(token);
-        });
-    }
 
     /**
      * Not activated users should be automatically deleted after 3 days.
@@ -250,11 +227,17 @@ public class UserService {
      */
     @Scheduled(cron = "0 0 1 * * ?")
     public void removeNotActivatedUsers() {
-        ZonedDateTime now = ZonedDateTime.now();
-        List<User> users = userRepository.findAllByActivatedIsFalseAndCreatedDateBefore(now.minusDays(3));
+        List<User> users = userRepository.findAllByActivatedIsFalseAndCreatedDateBefore(Instant.now().minus(3, ChronoUnit.DAYS));
         for (User user : users) {
             log.debug("Deleting not activated user {}", user.getLogin());
             userRepository.delete(user);
         }
+    }
+
+    /**
+     * @return a list of all the authorities
+     */
+    public List<String> getAuthorities() {
+        return authorityRepository.findAll().stream().map(Authority::getName).collect(Collectors.toList());
     }
 }

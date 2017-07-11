@@ -1,0 +1,42 @@
+/**
+* The Car entity
+*/
+entity Car {
+	qr String
+}
+
+/**
+* The Route of car
+*/
+entity BusRoute {
+	name String
+}
+
+/**
+* GPS date of the Route
+*/
+entity GPS {
+	time LocalDate,
+    latitude String,
+    longitude String,
+    accurancy Integer,
+    speed Integer
+}
+
+/**
+* Cars on Route
+*/
+entity CarOnRoute {
+	timeLogin LocalDate,
+    timeLogout LocalDate
+}
+
+relationship OneToMany {
+	Car{carOnRoute} to CarOnRoute{car},
+    Car{gps} to GPS{car},
+    BusRoute{carOnRoute} to CarOnRoute{route}
+}
+
+
+dto * with mapstruct
+service all with serviceImpl

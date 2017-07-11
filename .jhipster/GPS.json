@@ -1,0 +1,39 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "car",
+            "otherEntityName": "car",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "time",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "latitude",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "longitude",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "accurancy",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "speed",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20170621192108",
+    "javadoc": "GPS date of the Route",
+    "entityTableName": "gps",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

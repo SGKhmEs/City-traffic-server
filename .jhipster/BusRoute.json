@@ -1,0 +1,23 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "carOnRoute",
+            "otherEntityName": "carOnRoute",
+            "otherEntityRelationshipName": "route"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170621192107",
+    "javadoc": "The Route of car",
+    "entityTableName": "bus_route",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

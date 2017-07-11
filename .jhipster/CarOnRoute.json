@@ -1,0 +1,33 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "car",
+            "otherEntityName": "car",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "route",
+            "otherEntityName": "busRoute",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "timeLogin",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "timeLogout",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20170621192109",
+    "javadoc": "Cars on Route",
+    "entityTableName": "car_on_route",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

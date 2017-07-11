@@ -1,0 +1,41 @@
+
+<div *ngIf="carOnRoute">
+    <h2><span jhiTranslate="cityTrafficServerApp.carOnRoute.detail.title">Car On Route</span> {{carOnRoute.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="cityTrafficServerApp.carOnRoute.timeLogin">Time Login</span></dt>
+        <dd>
+            <span>{{carOnRoute.timeLogin | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="cityTrafficServerApp.carOnRoute.timeLogout">Time Logout</span></dt>
+        <dd>
+            <span>{{carOnRoute.timeLogout | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="cityTrafficServerApp.carOnRoute.car">Car</span></dt>
+        <dd>
+            <div *ngIf="carOnRoute.carId">
+                <a [routerLink]="['/car', carOnRoute.carId]">{{carOnRoute.carId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="cityTrafficServerApp.carOnRoute.route">Route</span></dt>
+        <dd>
+            <div *ngIf="carOnRoute.routeId">
+                <a [routerLink]="['/bus-route', carOnRoute.routeId]">{{carOnRoute.routeId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'car-on-route/'+ carOnRoute.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
